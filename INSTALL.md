@@ -49,7 +49,7 @@ dsh plugin --profile desktop add dsh-pet
 ```sh
 # ① clone 本仓库，进入插件目录
 git clone https://github.com/PC2005-cloud/dsh-pet.git
-cd dsh-pet/dsh-pet
+cd dsh-pet-manager/dsh-pet
 
 # ② 安装依赖
 npm install
@@ -59,7 +59,7 @@ npm run build       # 必须手动跑一次（克隆后 npm install 不再自动
 
 # ④ 安装到 DSH（file: 指向**插件目录**——上面 cd 进去的那一层，用构建好的 lib）
 #    --profile 填实际在用的那个：dsh web → web；桌面应用 → desktop
-dsh plugin --profile web add file:D:/path/to/dsh-pet/dsh-pet
+dsh plugin --profile web add file:D:/path/to/dsh-pet-manager/dsh-pet
 ```
 
 > 注：`npm run build`（即 `scripts/prepare.js`）才产出**完整可安装**的 lib——除 tsdown 构建外还构建桌面共享核心（`shared-core.js`）、生成类型声明并收敛发布 `files` 清单；裸 `tsdown` 构建会缺桌面运行时与类型。发布与打包（`npm publish` / `npm pack`）时由 `prepack` 自动调用它，克隆仓库后需手动跑一次。
@@ -70,7 +70,7 @@ dsh plugin --profile web add file:D:/path/to/dsh-pet/dsh-pet
 
 ### 直接运行（Release 绿色版）
 
-1. 到 [Releases](https://github.com/PC2005-cloud/dsh-pet/releases) 页面挑一个版本，下载它的 `dsh-pet-win-x64.zip`（固定名）；
+1. 到 [Releases](https://github.com/PC2005-cloud/dsh-pet-manager/releases) 页面挑一个版本，下载它的 `dsh-pet-win-x64.zip`（固定名）；
 2. 解压到任意目录，例如 `D:\dsh-pet`；
 3. 双击目录里的 `dsh-pet.exe`。
 
@@ -84,9 +84,9 @@ dsh plugin --profile web add file:D:/path/to/dsh-pet/dsh-pet
 
 ```sh
 npm install -g dsh-pet        # 必须 npm 装；dsh plugin add 会装进 profile，bin 不在 PATH 上
-dsh-pet-standalone            # http://127.0.0.1:3080/dsh-pet-7340/（端口占用则顺延）
-dsh-pet-standalone --check    # 只体检，不启动
-dsh-pet-standalone --port 3100
+dsh-pet-manager-standalone            # http://127.0.0.1:3080/dsh-pet-manager-7340/（端口占用则顺延）
+dsh-pet-manager-standalone --check    # 只体检，不启动
+dsh-pet-manager-standalone --port 3100
 ```
 
 `Ctrl+C` 或 `POST /shutdown` 退出。
@@ -96,7 +96,7 @@ dsh-pet-standalone --port 3100
 ```sh
 npm install
 npm run build          # 完整 lib：tsdown + 桌面共享核心 + 类型声明
-npm run standalone     # Node 形态启动，等同 dsh-pet-standalone
+npm run standalone     # Node 形态启动，等同 dsh-pet-manager-standalone
 ```
 
 ### 打包成 exe
@@ -115,9 +115,9 @@ npm run dist              # electron-builder 打包
 
 - **能用**：动画链、点击/拖拽/甩抛、右键菜单、多开、自定义动画与表情包、pet pack。
 - **不可用**：余额、碎碎念、对话、系统通知——没有 DSH 的凭据与模型连接，接口返回带 `reason` 的结构化失败（见 [API.md](API.md)）。
-- **配置**：与 DSH 同一份（`$DSH_HOME/dsh-pet/main-config.jsonc` → 包内默认）。
+- **配置**：与 DSH 同一份（`$DSH_HOME/dsh-pet-manager/main-config.jsonc` → 包内默认）。
 - **只显示** `display` 含 `desktop` / `both` 的实例；端口默认 3080（占用则顺延）。
-- **可与 DSH 内运行同时开**，但共用 `%APPDATA%\dsh-pet-electron-helper`，可能互相踩缓存（仅告警）。
+- **可与 DSH 内运行同时开**，但共用 `%APPDATA%\dsh-pet-manager-electron-helper`，可能互相踩缓存（仅告警）。
 
 ## 安装后你会看到什么
 

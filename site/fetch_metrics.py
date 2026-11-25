@@ -56,7 +56,7 @@ from pathlib import Path
 
 SCHEMA_VERSION = 1
 DEFAULT_REPO = "PC2005-cloud/dsh-pet"
-DEFAULT_NPM_PACKAGE = "dsh-pet"
+DEFAULT_NPM_PACKAGE = "dsh-pet-manager"
 GENERATOR = "fetch_metrics.py"
 GH_TIMEOUT = 240
 HTTP_TIMEOUT = 45

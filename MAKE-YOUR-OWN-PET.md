@@ -25,7 +25,7 @@
 
 - 入睡与循环段**结尾不许回到站立**，只有醒来段才回站立；循环段首尾两帧必须完全相同，否则循环处会跳。
 - 三段共用同一条地面线、同一角色大小；生成后先比对「入睡尾帧 = 循环首帧 = 醒来首帧」「醒来尾帧 = 入睡首帧」再进素材链。
-- 素材链其余步骤不变（同样落 `dsh-pet/assets/webm/`），最后把三个名字写进配置的 `animations.sleep`：一套 = `start` / `loop` / `end` 各一个候选数组，可以配多套（蹲着睡、趴着睡…）；结构见 `dsh-pet/assets/config.jsonc` 里的 `sleep` 注释。
+- 素材链其余步骤不变（同样落 `dsh-pet-manager/assets/webm/`），最后把三个名字写进配置的 `animations.sleep`：一套 = `start` / `loop` / `end` 各一个候选数组，可以配多套（蹲着睡、趴着睡…）；结构见 `dsh-pet-manager/assets/config.jsonc` 里的 `sleep` 注释。
 
 ## ② 源视频 → 透明动画（素材链）
 
@@ -55,19 +55,19 @@ python encode_thumbs.py      # 转码 640×360 播放变体 → step04/
 
 插件默认只发布 `.webm`（VP9-alpha），Safari/WKWebView 不认 webm alpha（黑底），macOS 需要在 GitHub Release 下载官方转码的 **HEVC-with-Alpha `.mov`** 素材使用，两步：
 
-1. **下载**：<https://github.com/PC2005-cloud/dsh-pet/releases/tag/assets-mov>（固定 tag，保持最新；zip 解压后文件名与 webm 一一对应）
-2. **放入**：`.mov` 文件放进 `$DSH_HOME/dsh-pet/main-animation/mov/`（pet pack 宠物则是 `pet/<种类名>-animation/mov/`）
+1. **下载**：<https://github.com/PC2005-cloud/dsh-pet-manager/releases/tag/assets-mov>（固定 tag，保持最新；zip 解压后文件名与 webm 一一对应）
+2. **放入**：`.mov` 文件放进 `$DSH_HOME/dsh-pet-manager/main-animation/mov/`（pet pack 宠物则是 `pet/<种类名>-animation/mov/`）
 
 ## ③ 动画 → 插件
 
 ```sh
 # 把 step04 的播放变体同步进插件包（webm 直接 cp）
-cp step04/*.webm dsh-pet/assets/webm/   # 播放格式（VP9-alpha）
+cp step04/*.webm dsh-pet-manager/assets/webm/   # 播放格式（VP9-alpha）
 
 # 本地安装插件（--profile 填实际在用的那个：dsh web → web，桌面应用 → desktop；
 # 详见 INSTALL.md 的「从源码安装」；
-# file: 指向插件目录 dsh-pet/dsh-pet）
-dsh plugin --profile web add file:D:/path/to/dsh-pet/dsh-pet
+# file: 指向插件目录 dsh-pet-manager/dsh-pet）
+dsh plugin --profile web add file:D:/path/to/dsh-pet-manager/dsh-pet
 ```
 
 > 中间产物（step01-04）由脚本生成、不入仓库；`video/` 源视频和脚本是成果、入库维护。

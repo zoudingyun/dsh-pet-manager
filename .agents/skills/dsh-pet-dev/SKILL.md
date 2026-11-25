@@ -26,7 +26,7 @@ user-invocable: true
 | `dsh-plugin-comment-spec` | 和 `dsh-plugin-standards` 一起调：写代码就要写注释 |
 | `git-commit` | 要提交、要写或改写提交信息 |
 
-四个子 skill 都已注册，直接按名字交给 `skill` 工具，不需要去找文件，也不需要读文件。门禁命令在 `dsh-pet/` 子目录下执行。
+四个子 skill 都已注册，直接按名字交给 `skill` 工具，不需要去找文件，也不需要读文件。门禁命令在 `dsh-pet-manager/` 子目录下执行。
 
 ## 执行链
 
@@ -36,7 +36,7 @@ user-invocable: true
 2. **先开口再动工具**：说出理解与打算看什么；只读也要先开口。
 3. **写操作前停住**：说清「改什么、达到什么效果、怎么验证」，然后用弹窗等回复。预告不等于获批。
 4. **动代码前一起调 `dsh-plugin-standards` 与 `dsh-plugin-comment-spec`**：前者定插件类型、文件规模、目录归属、导出面、测试位置，后者定模块头分档、导出符号一行摘要、只写 why。写代码必然带注释，不拆成两步。
-5. **收尾跑门禁**（在 `dsh-pet/`）：`npm run typecheck`、`npm run lint`、`npm run format:check`、`npm run check:cycles`、`npm run check:runtime`、`npm run check:openapi`、`npm test`、`npm run build`。没跑过的不要说「已验证」。
+5. **收尾跑门禁**（在 `dsh-pet-manager/`）：`npm run typecheck`、`npm run lint`、`npm run format:check`、`npm run check:cycles`、`npm run check:runtime`、`npm run check:openapi`、`npm test`、`npm run build`。没跑过的不要说「已验证」。
 6. **提交时调 `git-commit`**：从实际 diff 推断 `type(scope)`，正文写实现方式、行为变化与涉及文件；推送必须有明确指令。
 
 ## 调用方式
